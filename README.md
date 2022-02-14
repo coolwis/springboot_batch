@@ -61,6 +61,11 @@ https://renuevo.github.io/spring/batch/spring-batch-chapter-3/
 https://jojoldu.tistory.com/336
 https://godekdls.github.io/Spring%20Batch/contents/
 
+### spring-batch-core-xxx.jar 의 schema-mysql.sql 을 실행
+- docker exec -it docker_batch_db bash 
+- mysql -u user01 -p;
+- use r102;
+- 아래 스크립트로 배치 테이블 생성
 <pre><code>
 DROP TABLE IF EXISTS BATCH_STEP_EXECUTION_CONTEXT ;
 DROP TABLE IF EXISTS BATCH_JOB_EXECUTION_CONTEXT ;
