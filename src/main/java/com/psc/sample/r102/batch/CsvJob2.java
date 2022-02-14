@@ -32,26 +32,26 @@ public class CsvJob2 {
     private static final int chunkSize = 5;
 
     @Bean
-    public Job csvJob1csvToJpaJob3_batchBuild() throws Exception {
-        return jobBuilderFactory.get("csvToJpaJob3")
-                .start(csvToJpaJob3_batchStep1())
+    public Job  csvJob2_batchBuild() throws Exception {
+        return jobBuilderFactory.get("csvJob2")
+                .start(csvJob2_batchStep1())
                 .build();
     }
 
     @Bean
-    public Step csvToJpaJob3_batchStep1() throws Exception {
-        return stepBuilderFactory.get("csvToJpaJob3_batchStep1")
+    public Step csvJob2_batchStep1() throws Exception {
+        return stepBuilderFactory.get("csvJob2_batchStep1")
                 .<TwoDto, TwoDto>chunk(chunkSize)
-                .reader(csvToJpaJob3_FileReader())
-                .writer(csvToJpaJob3_FileWriter(new FileSystemResource("R102/output/csvToJpaJob3_output.txt")))
+                .reader(csvJob2_FileReader())
+                .writer(csvJob2_FileWriter(new FileSystemResource("R102/output/csvJob2_output.txt")))
                 .build();
     }
 
     @Bean
-    public FlatFileItemReader<TwoDto> csvToJpaJob3_FileReader() {
+    public FlatFileItemReader<TwoDto> csvJob2_FileReader() {
 
         FlatFileItemReader<TwoDto> flatFileItemReader = new FlatFileItemReader<>();
-        flatFileItemReader.setResource(new ClassPathResource("/sample/csvToJpaJob3_input.csv"));
+        flatFileItemReader.setResource(new ClassPathResource("/sample/csvJob2_input.csv"));
         flatFileItemReader.setLinesToSkip(1);
 
         DefaultLineMapper<TwoDto> defaultLineMapper = new DefaultLineMapper<>();
@@ -71,7 +71,7 @@ public class CsvJob2 {
     }
 
     @Bean
-    public FlatFileItemWriter<TwoDto> csvToJpaJob3_FileWriter(Resource outputResource) throws Exception {
+    public FlatFileItemWriter<TwoDto> csvJob2_FileWriter(Resource outputResource) throws Exception {
 
         // 방법의 일환일 뿐 processor 권장 함
         CustomBeanWrapperFieldExtractor<TwoDto> fieldExtractor = new CustomBeanWrapperFieldExtractor<>();
@@ -83,7 +83,7 @@ public class CsvJob2 {
         lineAggregator.setFieldExtractor(fieldExtractor);
 
         return new FlatFileItemWriterBuilder<TwoDto>()
-                .name("csvToJpaJob3_FileWriter")
+                .name("csvJob2_FileWriter")
                 .resource(outputResource)
                 .lineAggregator(lineAggregator)
                 .build();
