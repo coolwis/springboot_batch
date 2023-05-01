@@ -4,6 +4,8 @@
 - 강의 링크: https://www.youtube.com/watch?v=wy99cPHlMlA
 
 
+- origin Source=>  https://github.com/parkseungchul ( https://github.com/parkseungchul/R100 )  /R102
+
 이번 강의를 통해 배치 아키텍쳐와 파일,CSV,Fixed,JSON -> 파일 , 디비 -> 디비 변환을 할 수 있다. 
 
 ### 레고 조립의 기분으로 가면 되요.
